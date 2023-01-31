@@ -148,7 +148,6 @@ line1.style.width = `${100 + tariffs.backblaze.minPayment * 4}px`;
 let prvultrStorage = 0;
 let prvultrTransfer = 0;
 function calculatePriceBasedOnRangeVultr(inputPrice, containsEl1, containsEl2) {
-  setTimeout(() => {
     if (inputPrice.classList.contains(containsEl1)) {
       prvultrStorage = +inputPrice.value * tariffs.vultr.storage;
     }
@@ -165,7 +164,6 @@ function calculatePriceBasedOnRangeVultr(inputPrice, containsEl1, containsEl2) {
     }
     let el = document.querySelector(".vultr__price");
     el.textContent = priceSum;
-  },1000)
 }
 let line2 = document.querySelector(".vultr__line");
 line2.style.width = `${100 + tariffs.vultr.minPayment * 4}px`;
@@ -175,7 +173,6 @@ let prbunnyTransfer = 0;
 let storageHDDoption = document.querySelector("#bunny-HHD");
 let storageSSDoption = document.querySelector("#bunny-SSD");
 function calculatePriceBasedOnRangeBunny(inputPrice, containsEl1, containsEl2) {
-  setTimeout(() => {
     if (inputPrice.classList.contains(containsEl1) && storageHDDoption.checked) {
       prbunnyStorage = 0;
       prbunnyStorage = +inputPrice.value * tariffs.bunny.storage.hdd;
@@ -197,7 +194,6 @@ function calculatePriceBasedOnRangeBunny(inputPrice, containsEl1, containsEl2) {
     }
     let el = document.querySelector(".bunny__price");
     el.textContent = priceSum;
-  },1000)
 }
 
 storageHDDoption.addEventListener("change", (event) => {
@@ -231,7 +227,6 @@ function calculatePriceBasedOnRangeScaleway(
   containsEl1,
   containsEl2
 ) {
-  setTimeout(() => {
     if (
         inputPrice.classList.contains(containsEl1) &&
         storageMultioption.checked
@@ -279,7 +274,6 @@ function calculatePriceBasedOnRangeScaleway(
 
     let el = document.querySelector(".scaleway__price");
     el.textContent = priceSum;
-  },1000)
 }
 
 storageMultioption.addEventListener("change", (event) => {
