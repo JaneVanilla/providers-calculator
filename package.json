@@ -1,0 +1,22 @@
+{
+  "name": "providers-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w styles/ -o styles/ --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaneVanilla/providers-calculator.git"
+  },
+  "author": "Zhanna Sydorovych",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaneVanilla/providers-calculator/issues"
+  },
+  "homepage": "https://github.com/JaneVanilla/providers-calculator#readme",
+  "dependencies": {
+    "node-sass": "^8.0.0"
+  }
+}
