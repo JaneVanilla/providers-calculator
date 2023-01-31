@@ -6,33 +6,33 @@ inputScaleResults.forEach((scaleInput) => {
 });
 rangeScaleResults.forEach((rangeInput) => {
   rangeInput.addEventListener("input", (event) => {
-    setGBFromNumberToRangeAndViseVersa(
-      event,
-      ".scales__storage-result",
-      ".scales__transfer-result",
-      "storage-scale",
-      "transfer-scale"
-    );
-    calculatePriceBasedOnRangeBackblaze(
-      event.currentTarget,
-      "storage-scale",
-      "transfer-scale"
-    );
-    calculatePriceBasedOnRangeVultr(
-      event.currentTarget,
-      "storage-scale",
-      "transfer-scale"
-    );
-    calculatePriceBasedOnRangeBunny(
-      event.currentTarget,
-      "storage-scale",
-      "transfer-scale"
-    );
-    calculatePriceBasedOnRangeScaleway(
-      event.currentTarget,
-      "storage-scale",
-      "transfer-scale"
-    );
+      setGBFromNumberToRangeAndViseVersa(
+        event,
+        ".scales__storage-result",
+        ".scales__transfer-result",
+        "storage-scale",
+        "transfer-scale"
+      );
+      calculatePriceBasedOnRangeBackblaze(
+        event.currentTarget,
+        "storage-scale",
+        "transfer-scale"
+      );
+      calculatePriceBasedOnRangeVultr(
+        event.currentTarget,
+        "storage-scale",
+        "transfer-scale"
+      );
+      calculatePriceBasedOnRangeBunny(
+        event.currentTarget,
+        "storage-scale",
+        "transfer-scale"
+      );
+      calculatePriceBasedOnRangeScaleway(
+        event.currentTarget,
+        "storage-scale",
+        "transfer-scale"
+      );
   });
 });
 
@@ -138,7 +138,6 @@ function calculatePriceBasedOnRangeBackblaze(
     line.style.width = `${100 + tariffs.backblaze.minPayment * 4}px`;
   }
 
-  //console.log(priceSum);
 
   let el = document.querySelector(".backblaze__price");
   el.textContent = priceSum;
@@ -149,23 +148,24 @@ line1.style.width = `${100 + tariffs.backblaze.minPayment * 4}px`;
 let prvultrStorage = 0;
 let prvultrTransfer = 0;
 function calculatePriceBasedOnRangeVultr(inputPrice, containsEl1, containsEl2) {
-  if (inputPrice.classList.contains(containsEl1)) {
-    prvultrStorage = +inputPrice.value * tariffs.vultr.storage;
-  }
-  if (inputPrice.classList.contains(containsEl2)) {
-    prvultrTransfer = +inputPrice.value * tariffs.vultr.transfer;
-  }
+  setTimeout(() => {
+    if (inputPrice.classList.contains(containsEl1)) {
+      prvultrStorage = +inputPrice.value * tariffs.vultr.storage;
+    }
+    if (inputPrice.classList.contains(containsEl2)) {
+      prvultrTransfer = +inputPrice.value * tariffs.vultr.transfer;
+    }
 
-  let priceSum = (prvultrStorage + prvultrTransfer).toFixed(2);
-  let line = document.querySelector(".vultr__line");
-  line.style.width = `${100 + priceSum * 4}px`;
-  if (priceSum < tariffs.vultr.minPayment) {
-    priceSum = tariffs.vultr.minPayment;
-    line.style.width = `${100 + tariffs.vultr.minPayment * 4}px`;
-  }
-  //console.log(priceSum);
-  let el = document.querySelector(".vultr__price");
-  el.textContent = priceSum;
+    let priceSum = (prvultrStorage + prvultrTransfer).toFixed(2);
+    let line = document.querySelector(".vultr__line");
+    line.style.width = `${100 + priceSum * 4}px`;
+    if (priceSum < tariffs.vultr.minPayment) {
+      priceSum = tariffs.vultr.minPayment;
+      line.style.width = `${100 + tariffs.vultr.minPayment * 4}px`;
+    }
+    let el = document.querySelector(".vultr__price");
+    el.textContent = priceSum;
+  },1000)
 }
 let line2 = document.querySelector(".vultr__line");
 line2.style.width = `${100 + tariffs.vultr.minPayment * 4}px`;
@@ -175,31 +175,29 @@ let prbunnyTransfer = 0;
 let storageHDDoption = document.querySelector("#bunny-HHD");
 let storageSSDoption = document.querySelector("#bunny-SSD");
 function calculatePriceBasedOnRangeBunny(inputPrice, containsEl1, containsEl2) {
-  if (inputPrice.classList.contains(containsEl1) && storageHDDoption.checked) {
-    prbunnyStorage = 0;
-    prbunnyStorage = +inputPrice.value * tariffs.bunny.storage.hdd;
-  }
-  if (inputPrice.classList.contains(containsEl1) && storageSSDoption.checked) {
-    prbunnyStorage = 0;
-    prbunnyStorage = +inputPrice.value * tariffs.bunny.storage.ssd;
-  }
+  setTimeout(() => {
+    if (inputPrice.classList.contains(containsEl1) && storageHDDoption.checked) {
+      prbunnyStorage = 0;
+      prbunnyStorage = +inputPrice.value * tariffs.bunny.storage.hdd;
+    }
+    if (inputPrice.classList.contains(containsEl1) && storageSSDoption.checked) {
+      prbunnyStorage = 0;
+      prbunnyStorage = +inputPrice.value * tariffs.bunny.storage.ssd;
+    }
 
-  if (inputPrice.classList.contains(containsEl2)) {
-    prbunnyTransfer = +inputPrice.value * tariffs.bunny.transfer;
-  }
-  //console.log(`outside sub: ${prbunnyStorage}`);
-  //console.log(`outside trans: ${prbunnyTransfer}`);
-  let priceSum = prbunnyStorage + prbunnyTransfer;
-  let line = document.querySelector(".bunny__line");
-  line.style.width = `${100 + priceSum * 4}px`;
-  if (priceSum > tariffs.bunny.maxPayment) {
-    priceSum = tariffs.bunny.maxPayment;
-    line.style.width = `${100 + tariffs.bunny.maxPayment * 4}px`;
-  }
-  //console.log(`outside summmm: ${priceSum}`);
-
-  let el = document.querySelector(".bunny__price");
-  el.textContent = priceSum;
+    if (inputPrice.classList.contains(containsEl2)) {
+      prbunnyTransfer = +inputPrice.value * tariffs.bunny.transfer;
+    }
+    let priceSum = prbunnyStorage + prbunnyTransfer;
+    let line = document.querySelector(".bunny__line");
+    line.style.width = `${100 + priceSum * 4}px`;
+    if (priceSum > tariffs.bunny.maxPayment) {
+      priceSum = tariffs.bunny.maxPayment;
+      line.style.width = `${100 + tariffs.bunny.maxPayment * 4}px`;
+    }
+    let el = document.querySelector(".bunny__price");
+    el.textContent = priceSum;
+  },1000)
 }
 
 storageHDDoption.addEventListener("change", (event) => {
@@ -233,60 +231,58 @@ function calculatePriceBasedOnRangeScaleway(
   containsEl1,
   containsEl2
 ) {
-  if (
-    inputPrice.classList.contains(containsEl1) &&
-    storageMultioption.checked
-  ) {
-    prscalewayStorage = 0;
-
-    amountOfGBstorage = +inputPrice.value;
-    if (amountOfGBstorage > tariffs.scaleway.free) {
-      prscalewayStorage =
-        (amountOfGBstorage - tariffs.scaleway.free) *
-        tariffs.scaleway.storage.multi;
-    } else {
+  setTimeout(() => {
+    if (
+        inputPrice.classList.contains(containsEl1) &&
+        storageMultioption.checked
+    ) {
       prscalewayStorage = 0;
-    }
-  }
-  if (
-    inputPrice.classList.contains(containsEl1) &&
-    storageSingleoption.checked
-  ) {
-    prscalewayStorage = 0;
 
-    amountOfGBstorage = +inputPrice.value;
-    if (amountOfGBstorage > tariffs.scaleway.free) {
-      prscalewayStorage =
-        (amountOfGBstorage - tariffs.scaleway.free) *
-        tariffs.scaleway.storage.single;
-    } else {
+      amountOfGBstorage = +inputPrice.value;
+      if (amountOfGBstorage > tariffs.scaleway.free) {
+        prscalewayStorage =
+            (amountOfGBstorage - tariffs.scaleway.free) *
+            tariffs.scaleway.storage.multi;
+      } else {
+        prscalewayStorage = 0;
+      }
+    }
+    if (
+        inputPrice.classList.contains(containsEl1) &&
+        storageSingleoption.checked
+    ) {
       prscalewayStorage = 0;
-    }
-  }
 
-  if (inputPrice.classList.contains(containsEl2)) {
-    amountOfGBtransfer = +inputPrice.value;
-    if (amountOfGBtransfer > tariffs.scaleway.free) {
-      prscalewayTransfer =
-        (amountOfGBtransfer - tariffs.scaleway.free) *
-        tariffs.scaleway.transfer;
-    } else {
-      prscalewayTransfer = 0;
+      amountOfGBstorage = +inputPrice.value;
+      if (amountOfGBstorage > tariffs.scaleway.free) {
+        prscalewayStorage =
+            (amountOfGBstorage - tariffs.scaleway.free) *
+            tariffs.scaleway.storage.single;
+      } else {
+        prscalewayStorage = 0;
+      }
     }
-  }
-  //console.log(`outside sub: ${prscalewayStorage}`);
-  //console.log(`outside trans: ${prscalewayTransfer}`);
-  let priceSum = prscalewayStorage + prscalewayTransfer;
-  let line = document.querySelector(".scaleway__line");
-  line.style.width = `${100 + priceSum * 4}px`;
-  console.log(`outside scalway: ${priceSum}`);
 
-  let el = document.querySelector(".scaleway__price");
-  el.textContent = priceSum;
+    if (inputPrice.classList.contains(containsEl2)) {
+      amountOfGBtransfer = +inputPrice.value;
+      if (amountOfGBtransfer > tariffs.scaleway.free) {
+        prscalewayTransfer =
+            (amountOfGBtransfer - tariffs.scaleway.free) *
+            tariffs.scaleway.transfer;
+      } else {
+        prscalewayTransfer = 0;
+      }
+    }
+    let priceSum = prscalewayStorage + prscalewayTransfer;
+    let line = document.querySelector(".scaleway__line");
+    line.style.width = `${100 + priceSum * 4}px`;
+
+    let el = document.querySelector(".scaleway__price");
+    el.textContent = priceSum;
+  },1000)
 }
 
 storageMultioption.addEventListener("change", (event) => {
-  console.log("Multi option");
   let storageValue = document.querySelector(".scales__storage-result");
   calculatePriceBasedOnRangeScaleway(
     storageValue,
@@ -296,7 +292,6 @@ storageMultioption.addEventListener("change", (event) => {
 });
 
 storageSingleoption.addEventListener("change", (event) => {
-  console.log("Single option");
   let storageValue = document.querySelector(".scales__storage-result");
   calculatePriceBasedOnRangeScaleway(
     storageValue,

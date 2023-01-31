@@ -12,7 +12,7 @@
   font-family: "Roboto Slab", serif;
 }
 .wrapper {
-  min-width: 750px;
+  min-width: 900px;
   margin: 0 auto;
   background-color: #fff;
   border: 10px solid #f95959;
@@ -128,12 +128,16 @@ input[type="range"] {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+  .page-body {
+    background-size: auto;
+  }
   .wrapper {
     min-width: unset;
     width: 90%;
   }
   .scales {
+    padding: 0 10px;
     flex-direction: column;
     flex-wrap: wrap;
     &__item:first-child {
@@ -141,6 +145,7 @@ input[type="range"] {
     }
   }
   .result-section {
+    padding: 20px 10px;
     &__item {
       flex-wrap: wrap;
     }

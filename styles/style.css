@@ -12,7 +12,7 @@
   font-family: "Roboto Slab", serif; }
 
 .wrapper {
-  min-width: 750px;
+  min-width: 900px;
   margin: 0 auto;
   background-color: #fff;
   border: 10px solid #f95959;
@@ -108,21 +108,26 @@ input[type="range"] {
     background-color: #455d7a;
     border-radius: 2px; }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+  .page-body {
+    background-size: auto; }
   .wrapper {
     min-width: unset;
     width: 90%; }
   .scales {
+    padding: 0 10px;
     flex-direction: column;
     flex-wrap: wrap; }
     .scales__item:first-child {
       margin-bottom: 30px; }
-  .result-section__item {
-    flex-wrap: wrap; }
-  .result-section__item-title {
-    width: 100%;
-    margin-bottom: 10px; }
-  .result-section__options {
-    left: 0; }
+  .result-section {
+    padding: 20px 10px; }
+    .result-section__item {
+      flex-wrap: wrap; }
+    .result-section__item-title {
+      width: 100%;
+      margin-bottom: 10px; }
+    .result-section__options {
+      left: 0; }
   .option-container {
     width: 100%; } }
